@@ -75,6 +75,7 @@ func (s *scanner) test(ctx context.Context, addr string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer conn.Close()
 	if deadline, ok := ctx.Deadline(); ok {
 		if err := conn.SetReadDeadline(deadline); err != nil {
 			return nil, err
